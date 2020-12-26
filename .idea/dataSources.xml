@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="my-test" uuid="e7bfc9c9-75d1-4096-9eee-c155bea8871c">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\ionut\Documents\Anul_III\Semestrul_I\IMR\IMR-FaceFilterApp\my-test.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
