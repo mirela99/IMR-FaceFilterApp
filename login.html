@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en-us">
-  <script src="Canvas2Image.js"></script>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -100,20 +99,24 @@
       .slick-slide {
         width: 130px;
       }
-      .class {
-       border-radius:50%;
+
+      .button {
+      appearance: button;
+      -moz-appearance: button;
+      -webkit-appearance: button;
+      text-decoration: none; font: menu; color: ButtonText;
+      display: inline-block; padding: 2px 8px;
+      font-size: 15px;
       }
     </style>
     
-     
-
-    <script type="text/javascript" src="html2canvas.js"></script>
-    <script type="text/javascript" src="Canvas2Image.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
   </head>
   <body>
     <canvas class="deepar" id="deepar-canvas" oncontextmenu="event.preventDefault()"></canvas>
+	<canvas id="test"></canvas>
     <div id="loader-wrapper">
         <span class="loader"></span></span>
         
@@ -143,6 +146,8 @@
         <div><img class="thumb" src="thumbs/topology.png"></div>
 
     </div>
+	
+	<button onclick="screenshot()" style="position:fixed; top: 25px; left: 25px;"> Take screenshot </button>
 
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -161,7 +166,7 @@
       var deepAR = DeepAR({ 
         canvasWidth: canvasWidth, 
         canvasHeight: canvasHeight,
-        licenseKey: 'd81779d7cfa93b68e3eff356c90a30e885eb6bae70b93dd41bb7fda099f1ee1032be49d354a1b72d',
+        licenseKey: '6019ab82381cca95f3afc74b4782f4876d3a8c150d3d1cfa03831af05e71b561984a3d27b8355c55',
         canvas: document.getElementById('deepar-canvas'),
         numberOfFaces: 1,
         libPath: './lib',
@@ -177,9 +182,13 @@
           });
         }
       });
+    
       
-   
-      
+      function screenshot(){
+        deepAR.takeScreenshot();
+
+      }
+
 
       deepAR.onCameraPermissionAsked = function() {
         console.log('camera permission asked');
@@ -193,9 +202,30 @@
         console.log('camera permission denied');
       };
 
+      count_ss= 1;
+
+
       deepAR.onScreenshotTaken = function(photo) {
-        console.log('screenshot taken');
-      };
+        console.log("screenshot taken");
+        var screenshot = document.createElement("IMG");
+        screenshot.id = "ss";
+        screenshot.setAttribute("src", photo);
+        screenshot.setAttribute("height", canvasHeight);
+        screenshot.setAttribute("width", canvasWidth);
+       
+        var a = document.createElement("A");
+        a.className = "button";
+        a.setAttribute('download', ("screenshot" + count_ss + ".png"));
+        count_ss = count_ss + 1;
+        a.setAttribute('href', photo);
+        a.innerHTML = "download";
+
+        var w = window.open("",'_blank');
+        w.document.write(screenshot.outerHTML);
+        w.document.write(a.outerHTML);
+        w.document.write(share.outerHTML);
+        w.document.close(); 
+        };
 
       deepAR.onImageVisibilityChanged = function(visible) {
         console.log('image visible', visible);
