@@ -145,6 +145,8 @@ span.psw {
 
 <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
+<button onclick="document.getElementById('id67').style.display='block'" style="width:auto;">Sign up</button>
+
 <div id="id01" class="modal">
   
   <form class="modal-content animate" action="" method="post">
@@ -170,14 +172,42 @@ span.psw {
   </form>
 </div>
 
+
+<div id="id67" class="modal">
+
+  <form class="modal-content animate" action="/signup" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id67').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="fyd.png" alt="Avatar" class="avatar">
+    </div>
+
+    <input type="text" placeholder="Username" name="username" value="{{
+      request.form.username }}">
+     <input type="password" placeholder="Password" name="password" value="{{
+      request.form.password }}">
+    <input class="btn btn-default" type="submit" value="Sign up">
+
+  {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}
+  {% endif %}
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id67').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
 <script>
 // Get the modal
-var modal = document.getElementById('id01');
+var modal_login = document.getElementById('id01');
+var modal_signup = document.getElementById('id67');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == modal_login || event.target == modal_signup) {
+        modal_signup.style.display = "none";
+        modal_login.style.display = "none";
     }
 }
 </script>

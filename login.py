@@ -26,9 +26,6 @@ class User(db.Model):
 
 
 db.create_all()
-admin = User(username='admin', password='batman')
-db.session.add(admin)
-db.session.commit()
 
 
 @login.route('/index', methods=['GET', 'POST'])
@@ -38,6 +35,20 @@ def logins():
         if not User.query.filter_by(username=request.form['username'], password=request.form['password']).first(): # request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
+            return redirect(url_for('index'))
+    return render_template('index.html', error=error)
+
+
+@login.route('/signup', methods=['GET', 'POST'])
+def signup():
+    error = None
+    if request.method == 'POST':
+        if User.query.filter_by(username=request.form['username']).first(): # request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Username already used'
+        else:
+            new_user = User(username=request.form['username'], password=request.form['password'])
+            db.session.add(new_user)
+            db.session.commit()
             return redirect(url_for('index'))
     return render_template('index.html', error=error)
 
