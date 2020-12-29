@@ -6,3 +6,10 @@ https://docs.google.com/document/d/1QXpHcSkinCtm20_LtlRgXGdg1s17K1uTYJGsGTdRHAE/
 
 Week 6, Document with the User Flow Diagram : 
 https://docs.google.com/document/d/1KsTGTXGq_WjgEVDFabKflPTpUSdbEZpZPugFdDDvPBM/edit?usp=sharing
+
+
+How to run the application:
+
+``` 
+python login.py 
+```
