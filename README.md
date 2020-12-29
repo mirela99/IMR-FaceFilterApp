@@ -11,5 +11,6 @@ https://docs.google.com/document/d/1KsTGTXGq_WjgEVDFabKflPTpUSdbEZpZPugFdDDvPBM/
 How to run the application:
 
 ``` 
-python login.py 
+1. > python login.py
+2. Open the browser at http://127.0.0.1:5000/index
 ```
