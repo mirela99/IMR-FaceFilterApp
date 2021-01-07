@@ -204,8 +204,8 @@
         w.document.write(screenshot.outerHTML);
         w.document.write(a.outerHTML);
         //screenshot.setAttribute('onclick', 'fbs_click(this)');
-        screenshot.addEventListener("click", function(){ console.log("I'm here"); var x=fbs_click(this); console.log(x);}, false);
-        w.document.write(screenshot.outerHTML);
+        {#screenshot.addEventListener("click", function(){ console.log("I'm here"); var x=fbs_click(this); console.log(x);}, false);#}
+        {#w.document.write(screenshot.outerHTML);#}
         w.document.close();
         };
       deepAR.onImageVisibilityChanged = function(visible) {
